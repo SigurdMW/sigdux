@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mutistep form example</title>
+    <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+      .step {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Sigdux form</h1>
+      <div class="step step-1" style="display: block;">
+        <h2>Step 1</h2>
+        <p>
+          Fill in som basic
+        </p>
+        <form action="" onsubmit="handleSubmit(this, event)">
+          <label>Name
+            <input type="text" name="name" />
+          </label>
+
+          <button type="submit">Next step</button>
+        </form>
+      </div>
+
+      <div class="step step-2">
+        <h2>Step 2</h2>
+        <p>
+          Just a couple more
+        </p>
+      </div>
+
+      <div class="step step-3">
+        <h2>Step 3</h2>
+        <p>
+          Almost there!
+        </p>
+      </div>
+    </div>
+
+  <script src="../../Sigdux.js"></script>
+  <script src="store.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>
