@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redux test</title>
+  </head>
+  <body>
+    <div id="root">
+
+    </div>
+
+
+  <script src="Sigdux.js"></script>
+  <script src="index.js"></script>
+  <script>
+    anotherStore.addSubscriber(updateDom);
+
+    function updateDom(store){
+      console.log("updateing dom");
+      document.querySelector("#root").innerHTML = store.user;
+    }
+
+    anotherStore.dispatch("GET_USERS", {user: "test"});
+</script>
+  </body>
+</html>
