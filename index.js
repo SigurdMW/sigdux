@@ -1,62 +1,32 @@
 // https://github.com/reactjs/redux/blob/master/src/createStore.js
 
-// dispatch(action, data)
-//    => reducer(action, data)
-//    => updateStore
-//    => subscribers(updatedData)
+// TODO: default values in reducers? right now they must be passed to the store on init
+// TODO: how to combine reducers?
+// TODO: subscribe to only a part of the state?
+// TODO: allow async reducers? with async/await or promises
 
-/*
-1. setup store(takes reducer as argument)
-2. dispatch
-3. reducer / React
-4. updateStore
-5. notify Subscribers // update
-*/
+// subscribe to certain parts of the store
+// pass a callback to run AFTER the reducer-part
+//   CONS: must compare current and previous state part
 
 function reducer(action, data, state){
 	switch(action){
-		case "GET_USERS":
-			return Object.assign({}, state, {user: "Sigurd"});
+		case "SET_USERNAME":
+			return Object.assign({}, state, {user: data});
+		case "INCREMENT_COUNTER":
+			return Object.assign({}, state, {count: state.count + 1});
+		case "DECREMENT_COUNTER":
+			return Object.assign({}, state, {count: state.count - 1});
 		default:
 			return data;
 	}
 }
 
-// Init state
-const anotherStore = new Sigdux(reducer, {});
+// Initial store data
+const initialState = {
+	user: null,
+	count: 0
+};
 
-// add subscribers
-anotherStore.addSubscriber(onUpdateFunction);
-
-// dispatch events
-anotherStore.dispatch("GET_USERS", {});
-
-function onUpdateFunction(store){
-	// ...
-	console.log("\n=== UPDATING STATE ===");
-	console.log(store);
-	console.log("=== UPDATING STATE FINISHED ===\n");
-}
-
-// console.log("\n=== REGISTRED LISTENERS ===");
-// console.log(anotherStore.subscribers);
-//
-// console.log("\n=== CURRENT STATE ===");
-// console.log(anotherStore.getState());
-
-
-// let store = (state) => {
-// 	return {
-// 		getState(){
-// 			return {somestate: "sdasas"};
-// 		}
-// 	}
-// }
-//
-// function createStore(){
-// 	return state;
-// }
-//
-// const myStore = store();
-//
-// console.log(myStore.getState());
+// Setup store
+const anotherStore = new Sigdux(reducer, initialState);

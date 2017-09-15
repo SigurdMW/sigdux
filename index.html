@@ -5,22 +5,15 @@
     <title>Redux test</title>
   </head>
   <body>
-    <div id="root">
-
-    </div>
+    <button class="button increment">+</button>
+    <button class="button decrement">-</button>
+    <p class="counter-result"></p>
+    <p id="root"></p>
+    <input type="text" oninput="updateNameState(this, event)" placeholder="whats your name" />
 
 
   <script src="Sigdux.js"></script>
   <script src="index.js"></script>
-  <script>
-    anotherStore.addSubscriber(updateDom);
-
-    function updateDom(store){
-      console.log("updateing dom");
-      document.querySelector("#root").innerHTML = store.user;
-    }
-
-    anotherStore.dispatch("GET_USERS", {user: "test"});
-</script>
+  <script src="app.js"></script>
   </body>
 </html>

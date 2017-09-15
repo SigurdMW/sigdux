@@ -1,6 +1,7 @@
 class Sigdux {
 	constructor(reducer, defaultStore){
 		this.state = defaultStore || {};
+		this.previousState = null;
 		this.subscribers = [];
 	}
 
@@ -9,6 +10,7 @@ class Sigdux {
 	}
 
 	updateState(newState){
+		this.previousState = Object.assign({}, this.state);
 		this.state = Object.assign({}, newState);
 		this.updateSubscribers();
 	}
@@ -26,6 +28,9 @@ class Sigdux {
 			throw new Error("Subscriber must be a function");
 		}
 		this.subscribers.push(func);
+
+		// To set initial value
+		this.updateSubscribers();
 	}
 
 	updateSubscribers(){
