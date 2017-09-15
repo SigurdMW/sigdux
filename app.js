@@ -2,7 +2,11 @@ const dispatch = (action, data) => {anotherStore.dispatch(action, data)};
 anotherStore.addSubscriber(updateDom);
 
 function updateDom(store){
-  document.querySelector("#root").innerHTML = store.user;
+  if(store.user){
+    document.querySelector("#root").innerHTML = (typeof store.user === "string") ? store.user : JSON.stringify(store.user);
+  } else {
+    document.querySelector("#root").innerHTML = "";
+  }
   document.querySelector(".counter-result").innerHTML = store.count;
 }
 
