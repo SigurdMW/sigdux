@@ -16,19 +16,35 @@
       .step {
         display: none;
       }
+
+      label {
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      .step-active {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>My Sigdux form</h1>
+      <div class="step-indicator">
+        <span class="step-active">1</span> | <span>2</span> | <span>3</span>
+      </div>
       <div class="step step-1" style="display: block;">
         <h2>Step 1</h2>
         <p>
-          Fill in som basic
+          Fill in som basic information.
         </p>
         <form action="" onsubmit="handleSubmit(this, event)">
           <label>Name
             <input type="text" name="name" />
+          </label>
+
+          <label>Address
+            <input type="text" name="address" />
           </label>
 
           <button type="submit">Next step</button>
