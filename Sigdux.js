@@ -17,6 +17,7 @@
 class Sigdux {
 	constructor(reducer, defaultStore){
 		this.state = defaultStore || {};
+		this.previousState = {};
 		this.subscribers = [];
 	}
 
@@ -31,6 +32,7 @@ class Sigdux {
 		// functions and DOM elements in obj
 		// Order of keys in obj matter
 		if(JSON.stringify(this.state) !== JSON.stringify(state)){
+			this.previousState = this.state;
 			this.state = state;
 			this.updateSubscribers();
 		}
@@ -44,19 +46,32 @@ class Sigdux {
 		this.addReducer(action, data);
 	}
 
-	addSubscriber(func){
+	addSubscriber(func, subscriptions = []){
 		if(typeof func !== "function"){
 			throw new Error("Subscriber must be a function");
 		}
-		this.subscribers.push(func);
 
-		// To set initial value
+		this.subscribers.push({func: func, subscriptions: subscriptions});
+
+		// To set initial values
 		this.updateSubscribers();
 	}
 
 	updateSubscribers(){
 		this.subscribers.map(subscriber => {
-			subscriber(this.state);
+			// update all generic subscriptions
+			// (subscribeers to entire store)
+			if(subscriber.subscriptions.length === 0){
+				subscriber.func(this.state);
+			} else {
+				// update local subscriptions
+				// still passes entire state
+				subscriber.subscriptions.map(subscription => {
+					if(JSON.stringify(this.state[subscription]) !== JSON.stringify(this.previousState[subscription])){
+						subscriber.func(this.state);
+					}
+				});
+			}
 		});
 	}
 }

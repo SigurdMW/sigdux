@@ -1,13 +1,17 @@
 const dispatch = (action, data) => {anotherStore.dispatch(action, data)};
-anotherStore.addSubscriber(updateDom);
+anotherStore.addSubscriber(updateName, ["user"]);
+anotherStore.addSubscriber(updateCounter, ["count"]);
 
-function updateDom(store){
+function updateCounter(store){
+  document.querySelector(".counter-result").innerHTML = store.count || 0;
+}
+
+function updateName(store){
   if(store.user){
     document.querySelector("#root").innerHTML = (typeof store.user === "string") ? store.user : JSON.stringify(store.user);
   } else {
     document.querySelector("#root").innerHTML = "";
   }
-  document.querySelector(".counter-result").innerHTML = store.count;
 }
 
 document.querySelector(".increment").addEventListener("click", function(){
