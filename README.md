@@ -25,7 +25,9 @@ To set up your state container, you'll need a reducer and to create a new store 
   const store = new Sigdux(reducer, initialState);
 </script>
 ```
+
 ## Dispatch
+
 ```javascript
 store.dispatch("SET_USERNAME", "someusername");
 ´´´
