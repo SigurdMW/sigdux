@@ -1,5 +1,5 @@
 # Sigdux
-A understandable and simple state management framework.
+A understandable and simple state management framework inspired by Flux and Redux. 
 
 ## Usage
 To set up your state container, you'll need a reducer and to create a new store and pass the reducer and default store values (optional).
