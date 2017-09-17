@@ -36,7 +36,7 @@ store.dispatch("SET_USERNAME", "someusername");
 You can get store at any point by running ´´´store.getState();´´´
 
 ## Adding subscribers
-Subscribers are functions to run when the store gets updated. We have 2 types of subscribers; generic (runs on all changes in state) and local (runs when specified part of the store runs).
+Subscribers are functions to run when the store gets updated. We have 2 types of subscribers; generic ones that run on all changes in state, and local ones that run when a specified part of the store gets updated.
 
 ```javascript
 // Generic example
