@@ -5,7 +5,7 @@ A understandable and simple state management framework.
 To set up your state container, you'll need a reducer and to create a new store and pass the reducer and default store values (optional).
 
 ### Setup example
-```javascript
+```HTML
 <script src="sigdux.js"></script>
 <script>
   function reducer(action, data, state){
@@ -24,7 +24,7 @@ To set up your state container, you'll need a reducer and to create a new store 
 
   const store = new Sigdux(reducer, initialState);
 </script>
-```
+´´´
 
 ## Dispatch
 
