@@ -13,6 +13,9 @@
 
 // Optimize renderings:
 // 1. update state only when state changes.
+//
+
+import isEqual from 'lodash/isEqual';
 
 class Sigdux {
 	constructor(reducer, defaultStore){
@@ -32,7 +35,8 @@ class Sigdux {
 		// fast and simple comparison - will not work with
 		// functions and DOM elements in obj
 		// Order of keys in obj matter
-		if(JSON.stringify(this.state) !== JSON.stringify(state)){
+		//if(JSON.stringify(this.state) !== JSON.stringify(state)){
+		if(!isEqual(this.state, state)){
 			this.previousState = this.state;
 			this.state = state;
 			this.updateSubscribers();
@@ -89,3 +93,5 @@ class Sigdux {
 		});
 	}
 }
+
+export default Sigdux;
