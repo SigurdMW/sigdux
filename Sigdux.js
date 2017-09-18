@@ -19,6 +19,7 @@ class Sigdux {
 		this.state = defaultStore || {};
 		this.previousState = {};
 		this.subscribers = [];
+		this.reducer = reducer;
 	}
 
 	getState(){
@@ -39,7 +40,20 @@ class Sigdux {
 	}
 
 	addReducer(action, data){
-		this.updateState(reducer(action, data, this.state));
+		if(typeof this.reducer === "function"){
+			this.updateState(this.reducer(action, data, this.state));
+		} else if(typeof this.reducer === "object" && this.reducer !== null){
+			for (var i = 0; i < this.reducer.length; i++) {
+				if(typeof this.reducer[i] === "function"){
+					const reducer = this.reducer[i];
+					this.updateState(reducer(action, data, this.state));
+				} else {
+					throw new Error(typeof this.reducer[i] + " with index "+i+" in the array passed to the store setup is not a valid reducer. Reducer must be a function.");
+				}
+			}
+		} else {
+			throw new Error(typeof this.reducer + " passed to setup the store is not a valid reducer. Reducer must be either a function or an array of functions.");
+		}
 	}
 
 	dispatch(action, data){
