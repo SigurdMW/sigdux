@@ -1,0 +1,27 @@
+{
+  "name": "sigdux",
+  "version": "1.0.0",
+  "description": "A understandable and simple state management framework inspired by Flux and Redux.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"start": "parcel ./index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SigurdMW/sigdux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SigurdMW/sigdux/issues"
+  },
+  "homepage": "https://github.com/SigurdMW/sigdux#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}

@@ -1,39 +1,24 @@
-// function reducer(action, data, state){
-// 	switch(action){
-// 		case "SET_USERNAME":
-// 			return Object.assign({}, state, {user: data});
-// 		case "INCREMENT_COUNTER":
-// 			return Object.assign({}, state, {count: state.count + 1});
-// 		case "DECREMENT_COUNTER":
-// 			return Object.assign({}, state, {count: state.count - 1});
-// 		case "SET_COUNT":
-// 			return Object.assign({}, state, {count: data});
-// 		case "SET_USER":
-// 			return Object.assign({}, state, {user: data});
-// 		default:
-// 			return state;
-// 	}
-// }
+import { Sigdux } from "./Sigdux"
 
-function incrementReducer(action, data, state){
-	switch(action){
+function incrementReducer(action, data, state) {
+	switch (action) {
 		case "INCREMENT_COUNTER":
-			return Object.assign({}, state, {count: state.count + 1});
+			return Object.assign({}, state, { count: state.count + 1 });
 		case "DECREMENT_COUNTER":
-			return Object.assign({}, state, {count: state.count - 1});
+			return Object.assign({}, state, { count: state.count - 1 });
 		default:
 			return state;
 	}
 }
 
-function userReducer(action, data, state){
-	switch(action){
+function userReducer(action, data, state) {
+	switch (action) {
 		case "SET_USERNAME":
-			return Object.assign({}, state, {user: data});
+			return Object.assign({}, state, { user: data });
 		case "SET_COUNT":
-			return Object.assign({}, state, {count: data});
+			return Object.assign({}, state, { count: data });
 		case "SET_USER":
-			return Object.assign({}, state, {user: data});
+			return Object.assign({}, state, { user: data });
 		default:
 			return state;
 	}
@@ -48,4 +33,4 @@ const initialState = {
 };
 
 // Setup store
-const anotherStore = new Sigdux(reducers, initialState);
+export const anotherStore = new Sigdux(reducers, initialState);
